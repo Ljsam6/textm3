@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <link rel="shortcut icon" href="/uploads/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <div class="container">
+        <form action="/dashboard" method="post">
+            <input type="text" name="class" placeholder="class">
+            <input type="text" name="stream" placeholder="stream">
+
+            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
+            <input type="file" name="upload" id="upload-input" style="display:none">
+
+            <button>Add Group</button>
+
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/upload.js"></script>
+</body>
+
+</html>
