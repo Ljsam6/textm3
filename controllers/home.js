@@ -18,7 +18,7 @@ module.exports = function (async, Club, _, Users, Message, FriendResult,Ad) {
 
                 function (callback) {
                     Club.aggregate({
-                        $group: {
+                        $group: { 
                             _id: "$stream"
                         }
                     }, (err, newResult) => {

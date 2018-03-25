@@ -16,7 +16,7 @@ module.exports = function (io, Users) {
             io.to(params.room).emit('usersList', users.GetUsersList(params.room));
 
             callback();
-        });
+        }); 
  
         socket.on('createMessage', (message, callback) => {
 

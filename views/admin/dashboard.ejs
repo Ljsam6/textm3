@@ -6,6 +6,7 @@
     <title>Admin Dashboard</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
 
     <link rel="shortcut icon" href="/uploads/favicon.ico" type="image/x-icon" />
 </head>
@@ -20,9 +21,47 @@
             <input type="file" name="upload" id="upload-input" style="display:none">
 
             <button>Add Group</button>
+            </form><br><br><br>
+        
+        <table class="table table-striped table bordered" width="1500px">
+            <tr>
+               <td><b>User Name</b></td>
+            <td><b>Message</b></td>
+            <td><b>Group</b></td>
+            <td><b>Time</b></td>
+            </tr>
+        <%  _.forEach(resultss,function(result){ %>
+            <tr>
+                <td>
+                    <b>
+                        <%= result.userName%>
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <%= result.body%>
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <%= result.name%>
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <%= result.createdAt%>
+                    </b>
+                </td>
 
-        </form>
-    </div>
+            </tr>
+        
+            <%})%>
+            
+        </table>
+        
+        </div>
+       
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

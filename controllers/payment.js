@@ -1,4 +1,4 @@
-const stripe = require('stripe')('//stripe key');
+const stripe = require('stripe')('sk_test_diBBc00iT5pu12JfpTX59v22');
 const path = require('path');
 const fs = require('fs');
 

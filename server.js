@@ -21,7 +21,7 @@ const container = require('./container');
 
 
 
-container.resolve(function (users,Ad, _,payment, admin, home, group, results, privatechat, profile, interests, news) {
+container.resolve(function (users,Ad, _,payment, admin, home, group,Black, results, privatechat, profile, interests, news) {
 
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost/chatapp3', { useMongoClient: true });

@@ -5,6 +5,9 @@ $(document).ready(function () {
     var sender = $('#sender').val();
 
     var userPic = $('#name-image').val();
+    
+
+
 
     socket.on('connect', function () {
 
@@ -51,7 +54,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var msg = $('#msg').val();
-
+        var username = $('#name-user').val();
 
         socket.emit('createMessage', {
             text: msg,
@@ -67,6 +70,7 @@ $(document).ready(function () {
             url: '/group/' + room,
             type: 'POST',
             data: {
+                userName:username,
                 message: msg,
                 groupName: room
             },

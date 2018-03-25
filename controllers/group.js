@@ -1,4 +1,8 @@
-module.exports = function (Users, async, Message, FriendResult, Group) {
+var Filter = require('bad-words'),
+    filter = new Filter();
+filter.addWords(['kutta']);
+
+module.exports = function (Users, async, Message, FriendResult, Group,Black) {
     return {
         SetRouting: function (router) {
             router.get('/group/:name', this.groupPage);
@@ -51,7 +55,7 @@ module.exports = function (Users, async, Message, FriendResult, Group) {
                                 callback(err, newResult1);
                             });
                         }
-                    )
+                    ) 
                 },
 
                 function (callback) {
@@ -78,7 +82,7 @@ module.exports = function (Users, async, Message, FriendResult, Group) {
                     if (req.body.message) {
                         const group = new Group();
                         group.sender = req.user._id;
-                        group.body = req.body.message;
+                        group.body = filter.clean(req.body.message);
                         group.name = req.body.groupName;
                         group.createdAt = new Date();
 
@@ -86,6 +90,24 @@ module.exports = function (Users, async, Message, FriendResult, Group) {
                             callback(err, msg);
                         });
                     }
+                },
+                function(callback){
+                    if (filter.isProfane(req.body.message)){
+                        const black = new Black();
+                        black.sender = req.user._id;
+                        black.body = req.body.message;
+                        black.name = req.body.groupName;
+                        black.userName = req.body.userName;
+                        black.createdAt = new Date();
+
+                        black.save((err,msg)=>{
+                            callback(err,msg);
+                        })
+
+                    }
+
+                  
+
                 }
             ], (err, results) => {
                 res.redirect('/group/' + req.params.name);

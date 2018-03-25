@@ -1,18 +1,59 @@
 
 const path = require('path');
 const fs = require('fs');
+var Filter = require('bad-words'),
+    filter = new Filter();
+filter.removeWords('hello');
+filter.addWords(['kutta']);
  
-module.exports = function (formidable, Club, aws) {
+module.exports = function (formidable, Club, Users,Black,async) {
     return {
         SetRouting: function (router) {
             router.get('/dashboard', this.adminPage);
 
-            router.post('/uploadFile', this.uploadFile);//aws.Upload.any(),
+            router.post('/uploadFile', this.uploadFile);
             router.post('/dashboard', this.adminPostPage);
         },
 
         adminPage: function (req, res) {
-            res.render('admin/dashboard');
+            async.parallel([
+                function (callback) {
+                    var badwords = [];
+                    
+                    Black.find({}, (err, result) => {
+
+                        var results = result;
+                        //console.log(results);
+                        results.forEach((words) => {
+                            if (filter.isProfane(words.body)) {
+                                badwords.push(words);
+
+                            }
+                            //console.log(badwords);
+                            
+                        });
+                        callback(err,badwords);
+                    });},
+
+                    
+
+
+            ],(err,results)=>{
+                const res1=results[0];
+                console.log(res1);
+
+               
+                
+
+                res.render('admin/dashboard', { resultss:res1 });
+
+
+
+            });
+
+           
+
+            
         },
 
         adminPostPage: function (req, res) {

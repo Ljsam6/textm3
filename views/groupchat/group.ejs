@@ -26,7 +26,13 @@
 
         <div class="col-md-12">
             <input type="hidden" id="name-user" value="<%= user.username %>">
-            <input type="hidden" id="name-image" value="<%= user.userImage %>">
+            <% if(user.userImage ==null){%>
+                <input type="hidden" id="name-image" value="https://graph.facebook.com/<%= user.facebook%>/picture?type=large">
+                <%}%>
+                    <% if(user.userImage){%>
+                        <input type="hidden" id="name-image" value="/uploads/<%= user.userImage%>">
+                        <%}%>
+           
 
             <div class="col-md-12">
                 <div class="chat_container">
@@ -131,10 +137,10 @@
                                                 <li class="left">
                                                     <span class="chat-img1 pull-left">
                                                     <% if(val.sender.userImage ==null){%>
-                                                        <img src="https://graph.facebook.com/<%= val.sender.facebook%>/picture?type=large" class="img-responsive img-user" id="show_img">
+                                                        <img src="https://graph.facebook.com/<%= val.sender.facebook%>/picture?type=large" class="img-responsive img-circle" id="show_img">
                                                         <%}%>
                                                 <% if(val.sender.userImage){%>
-                                                    <img src="/uploads/<%= val.sender.userImage%>" class="img-responsive img-user" id="show_img">
+                                                    <img src="/uploads/<%= val.sender.userImage%>" class="img-responsive img-circle" id="show_img">
                                                     <%}%>
                                                     </span>
                                                     <div class="chat-body1">
@@ -153,7 +159,8 @@
                                     <script id="message-template" type="text/template">
                                     <li class="left">
                                        <span class="chat-img1 pull-left">
-                                           <img src="/uploads/{{userImage}}" class="img-circle" alt="">
+                                           
+                                           <img src="{{userImage}}" class="img-circle" alt="">
                                        </span>
                                        <div class="chat-body1">
                                            <span class="chat-name">{{ sender }}</span>

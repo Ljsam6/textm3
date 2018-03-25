@@ -193,16 +193,20 @@ body {
     width: 40px;
     height: 40px;
 }
+.item img{
+    width:100%;
+}
+.carousel-inner > .item > img {
+  
+  height:460px; 
+}
+
 #carousel-example-generic{
-    width:1500px;
-    height:300px
+    height:460px;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
 }
- .carousel-control{
-   width:1500px;
-    height:300px 
-}
-
-
 
 
 
