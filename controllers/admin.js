@@ -40,12 +40,13 @@ module.exports = function (formidable, Club, Users,Black,async) {
 
             ],(err,results)=>{
                 const res1=results[0];
+                const res2=[{userName:'null',body:'null',name:'null',createdAt:'null'}];
                 console.log(res1);
+                if(!res1){
+                    res.render('admin/dashboard',{resultss:res2});
+                }
 
-               
-                
-
-                res.render('admin/dashboard', { resultss:res1 });
+               res.render('admin/dashboard', { resultss:res1 });
 
 
 
@@ -61,8 +62,42 @@ module.exports = function (formidable, Club, Users,Black,async) {
             newClub.class = req.body.class;
             newClub.stream= req.body.stream;
             newClub.image = req.body.upload;
-            newClub.save((err) => {
-                res.render('admin/dashboard');
+            newClub.save((err) => { //res.render('admin/dashboard');
+                   async.parallel([
+                    function (callback) {
+                        var badwords = [];
+                        
+                        Black.find({}, (err, result) => {
+    
+                            var results = result;
+                            //console.log(results);
+                            results.forEach((words) => {
+                                if (filter.isProfane(words.body)) {
+                                    badwords.push(words);
+    
+                                }
+                                //console.log(badwords);
+                                
+                            });
+                            callback(err,badwords);
+                        });},
+    
+                        
+    
+    
+                ],(err,results)=>{
+                    const res1=results[0];
+                    const res2=[{userName:'null',body:'null',name:'null',createdAt:'null'}];
+                    console.log(res1);
+                    if(!res1){
+                        res.render('admin/dashboard',{resultss:res2});
+                    }
+    
+                   res.render('admin/dashboard', { resultss:res1 });
+    
+    
+    
+                });
             })
         },
 

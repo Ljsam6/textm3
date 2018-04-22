@@ -16,7 +16,7 @@ module.exports = function(async, Users, Message){
                             }},
                             $inc: {totalRequest: 1}
                        }, (err, count) => {
-                           callback(err, count);
+                           callback(err, count); 
                        })
                    }
                 },
@@ -37,7 +37,11 @@ module.exports = function(async, Users, Message){
                     }
                 }
             ], (err, results) => {
+                
+               if(res.headersSent) return;
+               console.log(`Header 1: ${res.headersSent}`)
                 res.redirect(url);
+                //next();
             });
             
             async.parallel([
@@ -129,7 +133,10 @@ module.exports = function(async, Users, Message){
                 
                 
             ], (err, results) => {
+                console.log(`Header 2: ${res.headersSent}`)
+                //if(res.headerSent) return;
                 res.redirect(url);
+                //next();
             });
         }
     }

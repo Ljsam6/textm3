@@ -128,7 +128,13 @@
                                                 <% if(name === val.receiver.username.toLowerCase()) {%>
                                                     <li class="left">
                                                         <span class="chat-img1 pull-left">
-                                                            <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                                            <% if(val.sender.userImage ==null){%>
+                                                                <img src="https://graph.facebook.com/<%= val.sender.facebook%>/picture?type=large" class="img-responsive img-circle" id="show_img">
+                                                                <%}%>
+                                                        <% if(val.sender.userImage){%>
+                                                            <img src="/uploads/<%= val.sender.userImage%>" class="img-responsive img-circle" id="show_img">
+                                                            <%}%>
+                                                            </span> 
                                                         </span>
                                                         <div class="chat-body1">
                                                             <span class="chat-name">
@@ -141,7 +147,13 @@
                                                     <% } else if(name === val.sender.username.toLowerCase()) {%>
                                                         <li class="left">
                                                             <span class="chat-img1 pull-left">
-                                                                <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                                                <% if(val.sender.userImage ==null){%>
+                                                                    <img src="https://graph.facebook.com/<%= val.sender.facebook%>/picture?type=large" class="img-responsive img-circle" id="show_img">
+                                                                    <%}%>
+                                                            <% if(val.sender.userImage){%>
+                                                                <img src="/uploads/<%= val.sender.userImage%>" class="img-responsive img-circle" id="show_img">
+                                                                <%}%>
+                                                                </span>
                                                             </span>
                                                             <div class="chat-body1">
                                                                 <span class="chat-name">
@@ -157,16 +169,27 @@
                                     </ul>
 
                                     <script id="message-template" type="text/template">
+                                      
                                     <li class="left">
                                        <span class="chat-img1 pull-left">
-                                           <img src="http://placehold.it/300x300" class="img-circle" alt="">
+                                            <% if(user.userImage ==null){%>
+                                                <img src="https://graph.facebook.com/<%= user.facebook%>/picture?type=large" class="img-circle" alt="" >
+                                                <%}%>
+                                                    <% if(user.userImage){%>
+                                                        <img src="/uploads/<%= user.userImage%>" class="img-circle" alt="">
+                                                        <%}%>
+                                       
+                                   
+                                       
                                        </span>
+                                      
                                        <div class="chat-body1">
                                            <span class="chat-name">{{ sender }}</span>
                                            <br>
                                            {{ text }}
                                        </div>
                                     </li>
+                                   
                                 </script>
 
                                 </div>

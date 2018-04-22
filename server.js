@@ -87,7 +87,7 @@ container.resolve(function (users,Ad, _,payment, admin, home, group,Black, resul
         app.use(session({
             secret: 'secretkeyitis',
             resave: false,
-            saveInitialized: true,
+            saveUninitialized: true,
             store: new MongoStore({ mongooseConnection: mongoose.connection })
         }));
 

@@ -110,7 +110,10 @@ module.exports = function (Users, async, Message, FriendResult, Group,Black) {
 
                 }
             ], (err, results) => {
+                if(res.headersSent) return;
+                console.log(`Header 0: ${res.headersSent}`)
                 res.redirect('/group/' + req.params.name);
+                //next();
             });
         },
 
@@ -118,6 +121,7 @@ module.exports = function (Users, async, Message, FriendResult, Group,Black) {
             req.logout();
             req.session.destroy((err) => {
                 res.redirect('/');
+                next();
             });
         }
     }

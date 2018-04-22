@@ -71,7 +71,7 @@ $(document).ready(function () {
                     console.log('Request Sent');
                 })
             }
-        })
+        }) 
     });
 
     $('#accept_friend').on('click', function () {
@@ -107,7 +107,7 @@ $(document).ready(function () {
         });
         $('#reload').load(location.href + ' #reload');
     });
-});
+ });
 
 
 

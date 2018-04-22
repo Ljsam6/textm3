@@ -39,10 +39,10 @@
                                             <div class="col-md-3">
                                                 <p class="text-center">
                                                     <% if(user.userImage ==null){%>
-                                                <img src="https://graph.facebook.com/<%= user.facebook%>/picture?type=large" class="img-responsive img-user" id="show_img">
+                                                <img src="https://graph.facebook.com/<%= val.body.sender.facebook%>/picture?type=large" class="img-responsive img-user" id="show_img">
                                                 <%}%> 
                                                 <% if(user.userImage){%>
-                                                    <img src="/uploads/<%= user.userImage%>" class="img-responsive img-user" id="show_img">
+                                                    <img src="/uploads/<%= val.body.sender.userImage%>" class="img-responsive img-user" id="show_img">
                                                     <%}%>
                                                 </p>
                                             </div>
@@ -75,10 +75,10 @@
                                                 <div class="col-md-3">
                                                     <p class="text-center">
                                                         <% if(user.userImage ==null){%>
-                                                            <img src="https://graph.facebook.com/<%= user.facebook%>/picture?type=large" class="img-responsive img-user" id="show_img">
+                                                            <img src="https://graph.facebook.com/<%= val.body.sender.facebook%>/picture?type=large" class="img-responsive img-user" id="show_img">
                                                             <%}%>
                                                                 <% if(user.userImage){%>
-                                                                    <img src="/uploads/<%= user.userImage%>" class="img-responsive img-user" id="show_img">
+                                                                    <img src="/uploads/<%= val.body.sender.userImage%>" class="img-responsive img-user" id="show_img">
                                                                     <%}%>
                                                     </p>
                                                 </div>
@@ -89,11 +89,11 @@
                                                                 <p class="text-left drop-name">
                                                                     <% if(user.username !== val.body.receiverName) {%>
                                                                         <strong>
-                                                                            <%= val.body.receiverName %>
+                                                                            <%= val.body.senderName %>
                                                                         </strong>
                                                                         <% } else { %>
                                                                             <strong>
-                                                                                <%= val.body.senderName %>
+                                                                                <%= val.body.receieverName %>
                                                                             </strong>
                                                                             <% } %>
                                                                 </p>

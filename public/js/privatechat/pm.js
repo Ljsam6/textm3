@@ -15,7 +15,7 @@ $(document).ready(function () {
             room1: paramOne,
             room2: paramTwo
         }
-
+ 
         socket.emit('join PM', params);
 
         socket.on('message display', function () {
@@ -29,6 +29,7 @@ $(document).ready(function () {
 
     socket.on('new message', function (data) {
         var template = $('#message-template').html();
+         
         var message = Mustache.render(template, {
             text: data.text,
             sender: data.sender
